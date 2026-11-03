@@ -1,0 +1,59 @@
+店舗を指定
+取得する日にちを選択
+ジャグラー台の名前を登録しておく
+
+step1：champion諏訪のリンクを元にサイトに移動。
+step2：指定した日にちのリンクに飛ぶ
+step3：ジャグラー台をサーチ
+step4：登録していたジャグラー台があったら、その台のリンクを取得
+step5：if then go to step3
+step6：格納したリンクに飛び詳細データを取得
+step7：
+step8：
+
+
+
+みんれぽの構造は下記のようになっている。
+
+店舗を選択
+日にちの選択
+機種の選択
+詳細データの取得
+
+
+
+現状、機種の選択まではできている。そこで詳細データについてサイトでは下記のような構造になっている
+詳細データを獲得する時は、table_wrapという要素の中に、下記のようにある。
+
+・表の項目名
+<tr><td><a href="https://min-repo.com/3417623/?num=905">905</a></td><td class="samai_cell">-1</td><td>1,755</td><td class="samai_cell _deritsu">100%</td><td class="bonus_cell">6</td><td class="bonus_cell">2</td><td class="bonus_cell">1/219</td><td class="bonus_cell">1/293</td><td class="bonus_cell">1/878</td></tr>
+
+・実際の値
+<tr><td><a href="https://min-repo.com/3417623/?num=905">905</a></td><td class="samai_cell">-1</td><td>1,755</td><td class="samai_cell _deritsu">100%</td><td class="bonus_cell">6</td><td class="bonus_cell">2</td><td class="bonus_cell">1/219</td><td class="bonus_cell">1/293</td><td class="bonus_cell">1/878</td></tr>
+avg_rowの直前のtrまでが台の詳細データ。avg_rowがきたらそのページの詳細データ取得は終了。
+
+
+【記事トップ（全機種の一覧があるページ）】
+  https://min-repo.com/3417623/
+       │
+       ▼ ①「マイジャグラー」をクリック
+【マイジャグラー専用ページへ移動】
+  https://min-repo.com/3417623/?kishu=マイジャグラー...
+       │
+       ├─ .table_wrap から台データを取得
+       ├─ avg_row が来たら終了
+       │
+       ▼ ② page.go_back() でブラウザバック！
+【記事トップに戻る】
+  https://min-repo.com/3417623/
+       │
+       ▼ ③ 次の「アイムジャグラー」をクリック
+【アイムジャグラー専用ページへ移動】
+  https://min-repo.com/3417623/?kishu=アイムジャグラー...
+       │
+       ├─ .table_wrap から台データを取得
+       ├─ avg_row が来たら終了
+       │
+       ▼ ④ page.go_back() で戻る（全機種終わるまでループ）
+
+
