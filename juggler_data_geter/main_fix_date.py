@@ -7,14 +7,14 @@ import pandas as pd
 from playwright.sync_api import sync_playwright
 
 # ページが跨ってデータがある時はリンクを貼り替える
-SEARCH_URL = "https://min-repo.com/page/2/?s=%E3%83%81%E3%83%A3%E3%83%B3%E3%83%94%E3%82%AA%E3%83%B3%E8%AB%8F%E8%A8%AA"
+SEARCH_URL = "https://min-repo.com/page/6/?s=%E3%83%81%E3%83%A3%E3%83%B3%E3%83%94%E3%82%AA%E3%83%B3%E8%AB%8F%E8%A8%AA"
 
 # 取得対象の期間
-START_DATE = datetime(2026, 10, 1)
-END_DATE   = datetime(2026, 10, 31)
+START_DATE = datetime(2026, 6, 1)
+END_DATE   = datetime(2026, 6, 30)
 
 # 出力ファイル名
-csv_filename = "champion_suwa_juggler_october_2.csv"
+csv_filename = "champion_suwa_juggler_june_2.csv"
 
 # ジャグラー判定用キーワード
 TARGET_JUGGLERS = [
